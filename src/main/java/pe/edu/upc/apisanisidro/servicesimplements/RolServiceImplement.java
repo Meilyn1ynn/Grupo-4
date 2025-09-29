@@ -40,6 +40,6 @@ public class RolServiceImplement implements IRolService {
 
     @Override
     public List<Roles> buscarService(String nombre) {
-        return repository.busca(nombre);
+        return repository.findByNombreRolContainingIgnoreCase(nombre);
     }
 }

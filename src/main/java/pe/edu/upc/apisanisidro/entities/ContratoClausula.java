@@ -2,8 +2,8 @@ package pe.edu.upc.apisanisidro.entities;
 
 import jakarta.persistence.*;
 
-@Table
-@Entity(name = "ContratoClausula")
+@Entity
+@Table(name = "contrato_clausulas")
 public class ContratoClausula {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

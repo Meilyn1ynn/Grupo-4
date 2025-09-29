@@ -14,6 +14,4 @@ public interface UsuarioRepository extends JpaRepository<Usuarios, Integer> {
 
     @Query(value = "SELECT rol, COUNT(*) FROM usuario GROUP BY rol", nativeQuery = true)
     List<String[]> cantidadUsuariosPorRol();
-
-    List<Usuarios> busca(String nombre);
 }

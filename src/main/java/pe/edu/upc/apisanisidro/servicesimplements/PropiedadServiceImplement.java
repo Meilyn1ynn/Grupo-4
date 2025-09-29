@@ -40,6 +40,6 @@ public class PropiedadServiceImplement implements IPropiedadService {
 
     @Override
     public List<Propiedad> buscarService(String nombre) {
-        return repository.busca(nombre);
+        return repository.buscaPorTitulo(nombre);
     }
 }

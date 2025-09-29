@@ -7,5 +7,6 @@ import java.util.List;
 
 @Repository
 public interface RolesRepository extends JpaRepository<Roles, Integer> {
-    List<Roles> busca(String nombre);
+    // Método de búsqueda por nombre usando query method de Spring Data JPA
+    List<Roles> findByNombreRolContainingIgnoreCase(String nombre);
 }

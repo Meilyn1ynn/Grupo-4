@@ -13,6 +13,4 @@ public interface PropiedadRepository extends JpaRepository<Propiedad, Integer> {
 
     @Query(value = "SELECT u.nombre, COUNT(*) FROM propiedad p JOIN usuario u ON p.usuario_id = u.id GROUP BY u.nombre", nativeQuery = true)
     List<String[]> cantidadPropiedadesPorUsuario();
-
-    List<Propiedad> busca(String nombre);
 }

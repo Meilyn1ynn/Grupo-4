@@ -2,8 +2,8 @@ package pe.edu.upc.apisanisidro.entities;
 
 import jakarta.persistence.*;
 
-@Table
-@Entity(name = "UsuarioRol")
+@Entity
+@Table(name = "usuario_roles")
 public class UsuarioRol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
