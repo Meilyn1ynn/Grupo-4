@@ -1,0 +1,65 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Crear Ticket de Soporte</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <form [formGroup]="soporteForm" (ngSubmit)="guardar()">
+        
+        <!-- Usuario -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Usuario</mat-label>
+          <mat-select formControlName="usuario" required>
+            <mat-option *ngFor="let usuario of usuarios" [value]="usuario">
+              {{usuario.nombre}} {{usuario.apellido}} - {{usuario.email}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="soporteForm.get('usuario')?.hasError('required')">
+            Seleccione el usuario
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Mensaje -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Descripción del Problema</mat-label>
+          <textarea matInput formControlName="mensaje" rows="8" 
+                    maxlength="1000" required
+                    placeholder="Describa detalladamente el problema o consulta..."></textarea>
+          <mat-hint align="end">
+            {{soporteForm.get('mensaje')?.value?.length || 0}}/1000
+          </mat-hint>
+          <mat-error *ngIf="soporteForm.get('mensaje')?.hasError('required')">
+            La descripción es obligatoria
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Estado -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="estado" required>
+            <mat-option value="Pendiente">Pendiente</mat-option>
+            <mat-option value="En Proceso">En Proceso</mat-option>
+            <mat-option value="Resuelto">Resuelto</mat-option>
+          </mat-select>
+          <mat-error *ngIf="soporteForm.get('estado')?.hasError('required')">
+            Seleccione el estado
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Botones -->
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="submit" 
+                  [disabled]="soporteForm.invalid">
+            <mat-icon>send</mat-icon>
+            Crear Ticket
+          </button>
+          <button mat-raised-button type="button" (click)="cancelar()">
+            <mat-icon>cancel</mat-icon>
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,113 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Tickets de Soporte</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <!-- Barra de herramientas -->
+      <div class="toolbar">
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Buscar</mat-label>
+          <input matInput (keyup)="filtrar($event)" placeholder="Filtrar tickets...">
+          <mat-icon matPrefix>search</mat-icon>
+        </mat-form-field>
+        
+        <button mat-raised-button color="primary" routerLink="/soporte/insertar">
+          <mat-icon>add</mat-icon>
+          Nuevo Ticket
+        </button>
+      </div>
+
+      <!-- Tabla -->
+      <div class="table-container">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+          
+          <!-- ID -->
+          <ng-container matColumnDef="idSoporte">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+            <td mat-cell *matCellDef="let ticket">
+              <strong>#{{ticket.idSoporte}}</strong>
+            </td>
+          </ng-container>
+
+          <!-- Usuario -->
+          <ng-container matColumnDef="usuario">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuario</th>
+            <td mat-cell *matCellDef="let ticket">
+              <div class="user-info">
+                <strong>{{ticket.usuario.nombre}} {{ticket.usuario.apellido}}</strong>
+                <small>{{ticket.usuario.email}}</small>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Mensaje -->
+          <ng-container matColumnDef="mensaje">
+            <th mat-header-cell *matHeaderCellDef>Mensaje</th>
+            <td mat-cell *matCellDef="let ticket" class="mensaje-cell">
+              <span [matTooltip]="ticket.mensaje" matTooltipPosition="above">
+                {{ticket.mensaje.length > 80 ? 
+                  (ticket.mensaje | slice:0:80) + '...' : 
+                  ticket.mensaje}}
+              </span>
+            </td>
+          </ng-container>
+
+          <!-- Estado -->
+          <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+            <td mat-cell *matCellDef="let ticket">
+              <mat-chip-set>
+                <mat-chip [highlighted]="true" 
+                          [color]="getColorEstado(ticket.estado)">
+                  {{ticket.estado}}
+                </mat-chip>
+              </mat-chip-set>
+              
+              <!-- Botón cambiar estado -->
+              <button mat-icon-button [matMenuTriggerFor]="menuEstado" 
+                      matTooltip="Cambiar estado">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menuEstado="matMenu">
+                <button mat-menu-item (click)="cambiarEstado(ticket.idSoporte, 'Pendiente')">
+                  <mat-icon>schedule</mat-icon>
+                  Pendiente
+                </button>
+                <button mat-menu-item (click)="cambiarEstado(ticket.idSoporte, 'En Proceso')">
+                  <mat-icon>autorenew</mat-icon>
+                  En Proceso
+                </button>
+                <button mat-menu-item (click)="cambiarEstado(ticket.idSoporte, 'Resuelto')">
+                  <mat-icon>check_circle</mat-icon>
+                  Resuelto
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+
+          <!-- Fecha -->
+          <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+            <td mat-cell *matCellDef="let ticket">
+              {{ticket.fecha | date:'dd/MM/yyyy HH:mm'}}
+            </td>
+          </ng-container>
+
+         
+          <!-- Sin datos -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+              No se encontraron tickets de soporte
+            </td>
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" 
+                       showFirstLastButtons>
+        </mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
