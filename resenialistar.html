@@ -1,0 +1,94 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Lista de Reseñas</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <!-- Barra de herramientas -->
+      <div class="toolbar">
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Buscar</mat-label>
+          <input matInput (keyup)="filtrar($event)" placeholder="Filtrar reseñas...">
+          <mat-icon matPrefix>search</mat-icon>
+        </mat-form-field>
+        
+        <button mat-raised-button color="primary" routerLink="/reseñas/insertar">
+          <mat-icon>add</mat-icon>
+          Nueva Reseña
+        </button>
+      </div>
+
+      <!-- Tabla -->
+      <div class="table-container">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+          
+          <!-- ID -->
+          <ng-container matColumnDef="idReseña">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+            <td mat-cell *matCellDef="let reseña">{{reseña.idReseña}}</td>
+          </ng-container>
+
+          <!-- Autor -->
+          <ng-container matColumnDef="autor">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Autor</th>
+            <td mat-cell *matCellDef="let reseña">
+              {{reseña.autor.nombre}} {{reseña.autor.apellido}}
+            </td>
+          </ng-container>
+
+          <!-- Receptor -->
+          <ng-container matColumnDef="receptor">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Receptor</th>
+            <td mat-cell *matCellDef="let reseña">
+              {{reseña.receptor.nombre}} {{reseña.receptor.apellido}}
+            </td>
+          </ng-container>
+
+          <!-- Puntaje -->
+          <ng-container matColumnDef="puntaje">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Calificación</th>
+            <td mat-cell *matCellDef="let reseña">
+              <div class="rating-display">
+                <span class="stars-text">{{getEstrellas(reseña.puntaje)}}</span>
+                <span class="rating-number">({{reseña.puntaje}}/5)</span>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Comentario -->
+          <ng-container matColumnDef="comentario">
+            <th mat-header-cell *matHeaderCellDef>Comentario</th>
+            <td mat-cell *matCellDef="let reseña" class="comentario-cell">
+              <span [matTooltip]="reseña.comentario" matTooltipPosition="above">
+                {{reseña.comentario.length > 50 ? 
+                  (reseña.comentario | slice:0:50) + '...' : 
+                  reseña.comentario}}
+              </span>
+            </td>
+          </ng-container>
+
+          <!-- Fecha -->
+          <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+            <td mat-cell *matCellDef="let reseña">
+              {{reseña.fecha | date:'dd/MM/yyyy HH:mm'}}
+            </td>
+          </ng-container>
+
+    
+          <!-- Sin datos -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+              No se encontraron reseñas
+            </td>
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" 
+                       showFirstLastButtons>
+        </mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

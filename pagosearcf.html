@@ -1,0 +1,69 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Buscar Pagos</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <form [formGroup]="searchForm" (ngSubmit)="buscar()">
+        <div class="search-controls">
+          
+          <!-- Criterio de búsqueda -->
+          <mat-form-field appearance="outline">
+            <mat-label>Buscar por</mat-label>
+            <mat-select formControlName="criterio">
+              <mat-option value="estado">Estado</mat-option>
+              <mat-option value="metodo">Método de Pago</mat-option>
+              <mat-option value="monto">Monto Mínimo</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Campo de valor -->
+          <mat-form-field appearance="outline" class="flex-grow">
+            <mat-label>Valor</mat-label>
+            <input matInput formControlName="valor" 
+                   [type]="searchForm.value.criterio === 'monto' ? 'number' : 'text'"
+                   placeholder="Ingrese el valor a buscar">
+          </mat-form-field>
+
+          <!-- Botones -->
+          <button mat-raised-button color="primary" type="submit">
+            <mat-icon>search</mat-icon>
+            Buscar
+          </button>
+          
+          <button mat-raised-button type="button" (click)="limpiar()">
+            <mat-icon>clear</mat-icon>
+            Limpiar
+          </button>
+        </div>
+      </form>
+
+      <!-- Resultados -->
+      <div *ngIf="resultadosVisibles" class="results-container">
+        <h3>Resultados ({{pagos.length}})</h3>
+        
+        <div *ngIf="pagos.length === 0" class="no-results">
+          <mat-icon>info</mat-icon>
+          <p>No se encontraron resultados</p>
+        </div>
+
+        <mat-list *ngIf="pagos.length > 0">
+          <mat-list-item *ngFor="let pago of pagos">
+            <div class="pago-item">
+              <div class="pago-info">
+                <h4>Pago #{{pago.idPago}} - S/ {{pago.monto | number:'1.2-2'}}</h4>
+                <p>Contrato #{{pago.contrato.idContrato}} | {{pago.metodo}} | {{pago.fecha | date:'dd/MM/yyyy'}}</p>
+              </div>
+              <mat-chip [color]="pago.estado === 'Completado' ? 'primary' : 
+                                 pago.estado === 'Pendiente' ? 'warn' : 'accent'">
+                {{pago.estado}}
+              </mat-chip>
+            </div>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
