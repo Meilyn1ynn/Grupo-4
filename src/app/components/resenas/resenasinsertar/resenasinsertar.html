@@ -1,0 +1,86 @@
+<div class="container">
+  <div style="text-align: center; margin: 3%">
+    <h2>{{ edicion ? 'Editar Reseña' : 'Registrar Reseña' }}</h2>
+  </div>
+
+  <div style="text-align: center;">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+      @if(edicion) {
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="idReseña" required /> 
+        @if(form.get('idReseña')?.hasError('required')) {
+        <mat-error>El campo id es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      }
+
+      <br />
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Fecha de la Reseña</mat-label>
+        <input matInput [matDatepicker]="pickerInicio" formControlName="fecha" required /> 
+        <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+        <mat-datepicker #pickerInicio></mat-datepicker>
+        @if(form.get('fecha')?.hasError('required')) {
+        <mat-error>El campo Fecha es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+      
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Puntaje (1-5)</mat-label>
+        <input matInput type="number" formControlName="puntaje" required min="1" max="5"/>
+        @if(form.get('puntaje')?.hasError('required')) {
+        <mat-error>El campo Puntaje es obligatorio.</mat-error>
+        } @if(form.get('puntaje')?.hasError('min') || form.get('puntaje')?.hasError('max')) {
+        <mat-error>El puntaje debe estar entre 1 y 5.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Comentario</mat-label>
+        <textarea matInput formControlName="comentario" required rows="4"></textarea>
+        @if(form.get('comentario')?.hasError('required')) {
+        <mat-error>El campo Comentario es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+      
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Autor de la Reseña</mat-label>
+        <mat-select formControlName="fkAutor" required>
+          @for (u of listaUsuario; track u.idUsuario) {
+          <mat-option [value]="u.idUsuario">{{ u.username }}</mat-option>
+          }
+        </mat-select>
+        @if(form.get('fkAutor')?.hasError('required')) { 
+        <mat-error>El Autor es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      
+      <br />
+      
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Receptor de la Reseña</mat-label>
+        <mat-select formControlName="fkReceptor" required>
+          @for (u of listaUsuario; track u.idUsuario) {
+          <mat-option [value]="u.idUsuario">{{ u.username }}</mat-option>
+          }
+        </mat-select>
+        @if(form.get('fkReceptor')?.hasError('required')) {
+        <mat-error>El Receptor es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      
+      <br />
+
+      <button mat-raised-button color="primary">{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+    </form>
+  </div>
+</div>

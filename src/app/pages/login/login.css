@@ -1,0 +1,194 @@
+/* 1. Contenedor Principal: Pantalla dividida */
+.login-container {
+  display: flex;
+  height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+  width: 100%;
+  font-family: 'Roboto', sans-serif; /* Fuente típica de Angular Material */
+}
+
+/* =========================================
+   2. Lado Izquierdo (Imagen y Texto)
+   ========================================= */
+.login-left {
+    background: url('/log.webp');
+    flex: 1; /* Ocupa el 50% del espacio */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alineación superior */
+    padding: 60px;
+    color: white;
+    overflow: hidden; /* Para recortar la forma decorativa */
+
+  /* Capa oscura opcional para mejorar lectura del texto si la imagen es muy clara */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.2); /* Oscurecimiento leve */
+    z-index: 1;
+  }
+}
+
+/* Aseguramos que el contenido esté por encima del oscurecimiento */
+.login-left > * {
+  z-index: 2;
+}
+
+.login-logo {
+  width: 60px; /* Ajusta según el tamaño real de tu logo */
+  margin-bottom: 20px;
+}
+
+.login-left h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.login-left p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  max-width: 80%;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* La forma circular decorativa en la esquina inferior */
+.bg-shapes {
+  position: absolute;
+  bottom: -100px;
+  right: -50px;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.15); /* Blanco semi-transparente */
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* =========================================
+   3. Lado Derecho (Formulario)
+   ========================================= */
+.login-right {
+  flex: 1; /* Ocupa el otro 50% */
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrado vertical */
+  padding: 40px 80px; /* Espaciado interno generoso */
+}
+
+.login-right h2 {
+  color: #007bff; /* Verde oscuro (ajustar al de tu marca) */
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+/* Wrapper del formulario para controlar el ancho máximo */
+.form-wrapper {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Ajustes para Angular Material */
+.full-width {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+/* Estilos de los inputs para que parezcan cajas redondeadas (Appearance Fill) */
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: white !important;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 10px;
+}
+::ng-deep .mat-form-field-underline {
+  display: none; /* Oculta la línea inferior típica de Material */
+}
+
+/* Checkbox y Link de Olvidar contraseña */
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0 25px 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.forgot {
+  color: #0056b3;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Botón de Ingresar */
+.btn-login {
+  width: 100%;
+  padding: 8px 0;
+  font-size: 1.1rem;
+  background-color: #007bff !important; /* Verde vibrante */
+  color: white !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  height: 48px;
+}
+
+.register-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+.register-text a {
+  color: #0056b3;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Iconos sociales al pie */
+.social {
+  margin-top: 40px;
+}
+
+.social p {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s;
+}
+
+.social-icons img:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive para celulares */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    height: auto;
+  }
+  .login-left {
+    min-height: 300px;
+    padding: 30px;
+  }
+  .login-right {
+    padding: 30px;
+  }
+}

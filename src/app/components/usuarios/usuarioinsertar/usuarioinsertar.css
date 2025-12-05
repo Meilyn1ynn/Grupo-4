@@ -1,0 +1,21 @@
+ mat-form-field {
+ width: 60%;
+ }
+
+button[matButton] {
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 4px 12px;
+  color: rgb(238, 244, 241);
+  text-transform: none;
+  transition: all 0.25s ease;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  background-color: rgb(251, 140, 0);
+   width: 60%;
+}
+
+
+button[matButton="elevated"]:hover {
+ background-color: #5dea9c;
+}

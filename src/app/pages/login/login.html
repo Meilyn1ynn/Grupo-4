@@ -1,0 +1,57 @@
+<div class="login-container">
+
+    <div class="login-left">
+        <img src="logo.png" class="login-logo" alt="UXSiembra Logo">
+        <h1>¡Bienvenido de vuelta!</h1>
+        <p>
+            Optimiza tu agricultura con análisis inteligentes, alertas en tiempo real 
+            y tecnología accesible desde tu celular.
+        </p>
+        <div class="bg-shapes"></div>
+    </div>
+
+    <div class="login-right">
+        <h2>Inicia Sesión</h2>
+
+        <div class="form-wrapper">
+
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Usuario </mat-label>
+                <input matInput [(ngModel)]="username" placeholder="username" required>
+            </mat-form-field>
+            <br />
+
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input type="password" matInput [(ngModel)]="password" placeholder="password" required>
+            </mat-form-field>
+
+            <div class="options">
+                <label class="remember">
+                    <input type="checkbox" [(ngModel)]="remember" />
+                    <span>Recordarme</span>
+                </label>
+                <a routerLink="/recuperar" class="forgot">¿Olvidaste tu contraseña?</a>
+            </div>
+
+            <button mat-raised-button color="primary" class="btn-login" (click)="login()">
+                Ingresar
+            </button>
+
+            <p class="register-text">
+                ¿No tienes una cuenta? <a routerLink="/registro">Regístrate aquí</a>
+            </p>
+
+        </div>
+
+        <div class="social">
+            <p>Síguenos</p>
+            <div class="social-icons">
+                <a href="#"><img src="facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="instagram.png" alt="Instagram"></a>
+            </div>
+        </div>
+    </div>
+
+</div>

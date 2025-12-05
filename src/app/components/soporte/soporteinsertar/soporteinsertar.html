@@ -1,0 +1,72 @@
+<div class="container">
+  <div style="text-align: center; margin: 3%">
+    <h2>{{ edicion ? 'Editar Mensaje de Soporte' : 'Enviar Mensaje de Soporte' }}</h2>
+  </div>
+
+  <div style="text-align: center;">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+      @if(edicion) {
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="idSoporte" required /> 
+        @if(form.get('idSoporte')?.hasError('required')) {
+        <mat-error>El campo id es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      }
+
+      <br />
+
+            <!-- Estado -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Estado</mat-label>
+        <input matInput formControlName="estado" required />
+        @if(form.get('estado')?.hasError('required')) {
+        <mat-error>El campo estado es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+      
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Usuario (Autor)</mat-label>
+        <mat-select formControlName="fkUsuario" required>
+          @for (u of listaUsuario; track u.idUsuario) {
+          <mat-option [value]="u.idUsuario">{{ u.username }}</mat-option>
+          }
+        </mat-select>
+        @if(form.get('fkUsuario')?.hasError('required')) { 
+        <mat-error>El Usuario es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      
+      <br />
+
+            <!-- Fecha Publicacion -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Fecha Notificacion</mat-label>
+        <input matInput [matDatepicker]="pickerInicio" formControlName="fecha" required />
+        <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+        <mat-datepicker #pickerInicio></mat-datepicker>
+        @if(form.get('fecha')?.hasError('required')) {
+        <mat-error>El campo Fecha Notificacion obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+      
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Detalle del Problema</mat-label>
+        <textarea matInput formControlName="mensaje" required rows="6"></textarea>
+        @if(form.get('mensaje')?.hasError('required')) {
+        <mat-error>El mensaje es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <button mat-raised-button color="primary">{{ edicion ? 'Actualizar' : 'Enviar' }}</button>
+    </form>
+  </div>
+</div>

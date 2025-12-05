@@ -1,0 +1,56 @@
+<div class="container">
+  <div style="text-align: center; margin: 3%">
+    <h2>{{ edicion ? 'Editar Foto ' : 'Registrar Foto de la propiedad' }}</h2>
+  </div>
+
+  <div style="text-align: center;">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+      <!-- ID Foto solo en edición -->
+      @if(edicion) {
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="idFoto" required />
+        @if(form.get('idFoto')?.hasError('required')) {
+        <mat-error>El campo id es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      }
+
+      <br />
+
+
+
+      <!-- URL -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>URL</mat-label>
+        <input matInput formControlName="url" required />
+        @if(form.get('url')?.hasError('required')) {
+        <mat-error>El campo URL es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+
+
+
+      <!-- Propiedad -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Propiedad</mat-label>
+        <mat-select formControlName="fkPropiedad" required>
+          @for(p of listaPropiedad; track p) {
+          <mat-option [value]="p.idPropiedad">{{ p.titulo }}</mat-option>
+          }
+        </mat-select>
+        @if(form.get('fkPropiedad')?.hasError('required')) {
+        <mat-error>Debe seleccionar una propiedad.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <button mat-button>{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+    </form>
+  </div>
+</div>

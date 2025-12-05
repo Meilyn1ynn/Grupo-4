@@ -1,0 +1,19 @@
+/* visita.css */
+
+.layout {
+  display: flex;       /* Pone el menú y el contenido lado a lado */
+  height: 100vh;       /* Altura completa */
+  width: 100%;
+  overflow: hidden;    /* Evita scroll doble */
+}
+
+.sidebar {
+  min-width: 250px;    /* Ancho fijo para el menú */
+  background-color: #fff; /* Fondo blanco (opcional) */
+}
+
+.content {
+  flex: 1;             /* Ocupa todo el espacio restante */
+  padding: 20px;       /* Espacio interno */
+  overflow-y: auto;    /* Scroll solo en el contenido si es muy largo */
+}

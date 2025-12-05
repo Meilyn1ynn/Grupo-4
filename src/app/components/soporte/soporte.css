@@ -1,0 +1,23 @@
+/* soporte.css */
+
+.layout {
+  display: flex;          /* Alinea sidebar y contenido uno al lado del otro */
+  height: 100vh;          /* Ocupa toda la altura de la pantalla */
+  background-color: #edf0f2;
+  overflow: hidden;       /* Evita que aparezca doble barra de scroll en la ventana */
+}
+
+.sidebar {
+  width: 220px;           /* Ancho fijo */
+  background: #f4f4f4;
+  padding: 10px;
+  /* IMPORTANTE: Hemos quitado position: fixed, top, left, bottom */
+  /* Al estar dentro de un display: flex, se queda quieto a la izquierda automáticamente */
+}
+
+.content {
+  flex: 1;                /* ESTA ES LA CLAVE: Ocupa todo el espacio restante automáticamente */
+  padding: 20px;
+  overflow-y: auto;       /* Si el contenido es largo, el scroll aparece AQUÍ, no en el menú */
+  /* Hemos quitado el margin-left y el width: calc() porque flex lo hace solo */
+}

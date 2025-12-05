@@ -1,0 +1,148 @@
+<header class="menu-header">
+  <div class="menu-container">
+
+    @if(verificar()){
+
+      @if(isAdmin()){
+      <mat-toolbar class="menu-item">
+        <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuUsuarios">
+          <mat-icon>person</mat-icon> Usuario
+        </button>
+      </mat-toolbar>
+      }
+
+      <mat-toolbar class="menu-item">
+        <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuContratos">
+          <mat-icon>description</mat-icon> Contrato
+        </button>
+      </mat-toolbar>
+
+      <mat-toolbar class="menu-item">
+        <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuPropiedad">
+          <mat-icon>home</mat-icon> Propiedades
+        </button>
+      </mat-toolbar>
+
+      @if(isAdmin() || isInquilino()){
+      <mat-toolbar class="menu-item">
+        <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuFavoritos">
+          <mat-icon>favorite</mat-icon> Favoritos
+        </button>
+      </mat-toolbar>
+      }
+
+      <mat-toolbar class="menu-item">
+        <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuNotificacion">
+          <mat-icon>notifications</mat-icon> Notificaciones
+        </button>
+      </mat-toolbar>
+
+      <mat-toolbar class="menu-item">
+        <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuPagos">
+          <mat-icon>payments</mat-icon> Pagos
+        </button>
+      </mat-toolbar>
+
+      <mat-toolbar class="menu-item">
+        <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuPropiedadFoto">
+          <mat-icon>photo_camera</mat-icon> PropiedadFoto
+        </button>
+      </mat-toolbar>
+
+      <mat-toolbar class="menu-item">
+        <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuResena">
+          <mat-icon>star</mat-icon> Reseñas
+        </button>
+      </mat-toolbar>
+
+      @if(isAdmin() || isInquilino()){
+      <mat-toolbar class="menu-item">
+        <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuSoporte">
+          <mat-icon>support_agent</mat-icon> Soporte
+        </button>
+      </mat-toolbar>
+      }
+
+      <mat-toolbar class="menu-item">
+        <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuVisitas">
+          <mat-icon>calendar_today</mat-icon> Visitas
+        </button>
+      </mat-toolbar>
+
+      <mat-toolbar class="menu-item">
+        <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuSalir">
+          <mat-icon>logout</mat-icon> Salir
+        </button>
+      </mat-toolbar>
+    }
+  </div>
+</header>
+
+<div style="height: 80px;"></div>
+
+<mat-menu #menuUsuarios="matMenu">
+  <button mat-menu-item routerLink="/usuarios"><mat-icon>list</mat-icon> Listar</button>
+  <button mat-menu-item routerLink="/usuarios/news"><mat-icon>add</mat-icon> Registrar</button>
+  <button mat-menu-item routerLink="/usuarios/searchs"><mat-icon>search</mat-icon> Buscar</button>
+</mat-menu>
+
+<mat-menu #menuContratos="matMenu">
+  <button mat-menu-item routerLink="/contratos"><mat-icon>list</mat-icon> Listar</button>
+  @if(isAdmin() || isPropietario()){
+    <button mat-menu-item routerLink="/contratos/news"><mat-icon>add</mat-icon> Registrar</button>
+    <button mat-menu-item routerLink="/contratos/searchs"><mat-icon>search</mat-icon> Buscar</button>
+  }
+</mat-menu>
+
+<mat-menu #menuPropiedad="matMenu">
+  <button mat-menu-item routerLink="/propiedades"><mat-icon>list</mat-icon> Listar</button>
+  @if(isAdmin() || isPropietario()){
+    <button mat-menu-item routerLink="/propiedades/news"><mat-icon>add</mat-icon> Registrar</button>
+  }
+</mat-menu>
+
+<mat-menu #menuFavoritos="matMenu">
+  <button mat-menu-item routerLink="/favoritos"><mat-icon>list</mat-icon> Listar</button>
+  <button mat-menu-item routerLink="/favoritos/news"><mat-icon>add</mat-icon> Registrar</button>
+</mat-menu>
+
+<mat-menu #menuNotificacion="matMenu">
+  <button mat-menu-item routerLink="/notificaciones"><mat-icon>list</mat-icon> Listar</button>
+  <button mat-menu-item routerLink="/notificaciones/news"><mat-icon>add</mat-icon> Registrar</button>
+</mat-menu>
+
+<mat-menu #menuPagos="matMenu">
+  <button mat-menu-item routerLink="/pagos"><mat-icon>list</mat-icon> Listar</button>
+  <button mat-menu-item routerLink="/pagos/news"><mat-icon>add</mat-icon> Registrar</button>
+</mat-menu>
+
+<mat-menu #menuPropiedadFoto="matMenu">
+  <button mat-menu-item routerLink="/propiedades/fotos"><mat-icon>list</mat-icon> Listar</button>
+  @if(isAdmin() || isPropietario()){
+    <button mat-menu-item routerLink="/propiedades/fotos/news"><mat-icon>add</mat-icon> Registrar</button>
+  }
+</mat-menu>
+
+<mat-menu #menuResena="matMenu">
+  <button mat-menu-item routerLink="/resenas"><mat-icon>list</mat-icon> Listar</button>
+  <button mat-menu-item routerLink="/resenas/news"><mat-icon>add</mat-icon> Registrar</button>
+</mat-menu>
+
+<mat-menu #menuSoporte="matMenu">
+  <button mat-menu-item routerLink="/soporte"><mat-icon>list</mat-icon> Listar</button>
+  <button mat-menu-item routerLink="/soporte/news"><mat-icon>add</mat-icon> Registrar</button>
+</mat-menu>
+
+<mat-menu #menuVisitas="matMenu">
+  <button mat-menu-item routerLink="/visitas"><mat-icon>list</mat-icon> Listar</button>
+  <button mat-menu-item routerLink="/visitas/news"><mat-icon>add</mat-icon> Registrar</button>
+</mat-menu>
+
+<mat-menu #menuSalir="matMenu">
+  <button mat-menu-item routerLink="/login" (click)="cerrar()">
+    <mat-icon>logout</mat-icon> Cerrar Sesión
+  </button>
+  <button mat-menu-item>
+    Rol detectado: <b>{{ role || 'NINGUNO' }}</b>
+  </button>
+</mat-menu>

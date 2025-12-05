@@ -1,0 +1,130 @@
+<div class="container">
+  <div style="text-align: center; margin: 3%">
+    <h2>{{ edicion ? 'Editar Usuario' : 'Registrar Usuario' }}</h2>
+  </div>
+
+  <div style="text-align: center;">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+      <!-- ID Usuario solo en edición -->
+      @if(edicion) {
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>ID Usuario</mat-label>
+        <input matInput formControlName="idUsuario" required />
+        @if(form.get('idUsuario')?.hasError('required')) {
+          <mat-error>El campo id es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      }
+
+      <br />
+
+      <!-- Nombre Usuario -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nombre Usuario</mat-label>
+        <input matInput formControlName="username" required />
+        @if(form.get('username')?.hasError('required')) {
+          <mat-error>El campo Nombre es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- Apellido Usuario -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Apellido Usuario</mat-label>
+        <input matInput formControlName="apellidoUsuario" required />
+        @if(form.get('apellidoUsuario')?.hasError('required')) {
+          <mat-error>El campo Apellido es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+
+        <mat-label>Enabled</mat-label>
+      <mat-radio-group aria-label="Select an option" formControlName="enabled">
+        <mat-radio-button [value]="true">Activo</mat-radio-button>
+        <mat-radio-button [value]="false">No Activo</mat-radio-button>
+        <mat-error>
+          @if (form.get('enabled')?.hasError('required')) { Ingrese su Actividad! }
+        </mat-error>
+      </mat-radio-group>
+
+
+
+
+      <br />
+
+      <!-- DNI Usuario -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>DNI Usuario</mat-label>
+        <input matInput formControlName="dniUsuario" required />
+        @if(form.get('dniUsuario')?.hasError('required')) {
+          <mat-error>El campo DNI es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- Correo Usuario -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Correo Usuario</mat-label>
+        <input matInput formControlName="correo" required />
+        @if(form.get('correo')?.hasError('required')) {
+          <mat-error>El campo Correo es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- Contraseña Usuario -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" formControlName="password" required />
+        @if(form.get('password')?.hasError('required')) {
+          <mat-error>El campo Contraseña es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- Edad Usuario -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Edad</mat-label>
+        <input matInput type="number" formControlName="edadUsuario" required />
+        @if(form.get('edadUsuario')?.hasError('required')) {
+          <mat-error>El campo Edad es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- Foto Usuario -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Foto Usuario</mat-label>
+        <input matInput type="text" formControlName="fotoUsuario" required />
+        @if(form.get('fotoUsuario')?.hasError('required')) {
+          <mat-error>El campo Foto es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- Estado Civil -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Estado Civil</mat-label>
+        <input matInput formControlName="estadoCivilUsuario" required />
+        @if(form.get('estadoCivilUsuario')?.hasError('required')) {
+          <mat-error>El campo Estado Civil es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+
+
+      <br />
+
+      <button mat-button>{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+    </form>
+  </div>
+</div>

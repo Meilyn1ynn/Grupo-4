@@ -1,0 +1,72 @@
+<div class="container">
+  <div style="text-align: center; margin: 3%">
+    <h2>{{ edicion ? 'Editar Favoritos' : 'Registrar Favoritos' }}</h2>
+  </div>
+
+  <div style="text-align: center;">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+      <!-- ID Contrato solo en edición -->
+      @if(edicion) {
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="idFavorito" required />
+        @if(form.get('idFavorito')?.hasError('required')) {
+        <mat-error>El campo id es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      }
+
+      <br />
+
+      <!-- Fecha Inicio -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Fecha</mat-label>
+        <input matInput [matDatepicker]="pickerInicio" formControlName="fecha" required />
+        <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+        <mat-datepicker #pickerInicio></mat-datepicker>
+        @if(form.get('fecha')?.hasError('required')) {
+        <mat-error>El campo Fecha es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+
+
+      <br />
+
+
+
+      <!-- Usuario -->
+
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="fkUsuario">
+          @for (u of listaUsuario; track u) {
+          <mat-option [value]="u.idUsuario">{{ u.username }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('fkUsuario')?.hasError('required')) { Ingrese el usuario! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <!-- Propiedad -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Propiedad</mat-label>
+        <mat-select formControlName="fk2Propiedad" required>
+          @for(p of listaPropiedad; track p) {
+          <mat-option [value]="p.idPropiedad">{{ p.titulo }}</mat-option>
+          }
+        </mat-select>
+        @if(form.get('fk2Propiedad')?.hasError('required')) {
+        <mat-error>Debe seleccionar una propiedad.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <button mat-button>{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+    </form>
+  </div>
+</div>

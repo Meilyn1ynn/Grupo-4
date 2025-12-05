@@ -1,0 +1,100 @@
+<header class="topheader">
+  <div class="container">
+    <div class="logo">
+      <img src="logo.png" alt="">
+      <span>AlquilaYa!</span>
+    </div>
+
+    <nav class="menu">
+      <ul class="Menu_Horizontal">
+        <li>
+          <a routerLink="/home" routerLinkActive="active">Inicio</a>
+          <ul class="Menu_Vertical">
+            <li><a href="#historia">Historia</a></li>
+            <li><a href="#proposito">Propósito</a></li>
+            <li><a href="#mision">Misión y Visión</a></li>
+          </ul>
+        </li>
+        <li>
+          <a routerLink="/caracteristicas" routerLinkActive="active">Características</a>
+        </li>
+        <li>
+          <a routerLink="/precios" routerLinkActive="active">Precios</a>
+        </li>
+        <li>
+          <a routerLink="/testimonios" routerLinkActive="active">Testimonios</a>
+        </li>
+        <li>
+          <a href="#">Contáctanos</a>
+          <ul class="Menu_Vertical">
+            <li><a href="#whatsapp">Whatsapp</a></li>
+            <li><a href="#facebook">Facebook</a></li>
+            <li><a href="#instagram">Instagram</a></li>
+            <li><a href="#telefono">Teléfono</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <a routerLink="/login" class="btn-primary" routerLinkActive="active">Comenzar Gratis</a>
+  </div>
+</header>
+<section class="precios" id="precios">
+  <h2>Planes para cada tipo de Inquilino</h2>
+  <p class="subtitle">Comienza con el precio que desees, actualiza cuando estés listo</p>
+  
+  <div class="precios-grid">
+    
+    <div class="precio-card">
+      <h3>Básico</h3>
+      <div class="precio">
+        <span class="simbolo">$</span>
+        <span class="monto">40 - <span class="simbolo">$</span>100</span>
+        <span class="periodo">Economico</span>
+      </div>
+      <ul class="caracteristicas-plan">
+        <li>✅ Wifi / Fibra Óptica</li>
+        <li>✅ Gas Natural</li>
+        <li>✅ Agua Caliente</li>
+        <li>✅ Aire Acondicionado</li>
+      </ul>
+      <a routerLink="/login" class="btn-plan">Comenzar Ahora</a>
+    </div>
+
+    <div class="precio-card destacado">
+      <div class="etiqueta-popular">Más Popular</div>
+      <h3>Premium</h3>
+      <div class="precio">
+        <span class="simbolo">$</span>
+        <span class="monto">100 - <span class="simbolo">$</span>200</span>
+        <span class="periodo">Premium</span>
+      </div>
+      <ul class="caracteristicas-plan">
+        <li>✅ Servicios Básicos y Confort</li>
+        <li>✅ Balcón o Terraza</li>
+        <li>✅ Lavandería Interna</li>
+        <li>✅ Seguridad 24/7</li>
+        <li>✅ Ascensor</li>
+        <li>✅ Estacionamiento</li>
+      </ul>
+      <a routerLink="/login" class="btn-plan-premium">Elegir Premium</a>
+    </div>
+
+    <div class="precio-card">
+      <h3>Cooperativa</h3>
+      <div class="precio">
+        <span class="monto">Contactar</span>
+        <span class="periodo">Personalizado</span>
+      </div>
+      <ul class="caracteristicas-plan">
+        <li>✅ Servicios Básicos y Confort</li>
+        <li>✅ Distribución y Espacios Privados</li>
+        <li>✅ Gimnasio</li>
+        <li>✅ Piscina</li>
+        <li>✅ Seguridad y Facilidades</li>
+        <li>✅ Pet Friendly</li>
+      </ul>
+      <a href="#contacto" class="btn-plan">Contactar Ventas</a>
+    </div>
+
+  </div>
+</section>

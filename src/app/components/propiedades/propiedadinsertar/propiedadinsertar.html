@@ -1,0 +1,118 @@
+<div class="container">
+  <div style="text-align: center; margin: 3%">
+    <h2>{{ edicion ? 'Editar Propiedad' : 'Registrar Propiedad' }}</h2>
+  </div>
+
+  <div style="text-align: center;">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+      <!-- ID Propiedad solo en edición -->
+      @if(edicion) {
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>ID Propiedad</mat-label>
+        <input matInput formControlName="idPropiedad" required />
+        @if(form.get('idPropiedad')?.hasError('required')) {
+          <mat-error>El campo id es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      }
+
+      <br />
+
+      <!-- Nombre Usuario -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Titulo Propiedad</mat-label>
+        <input matInput formControlName="titulo" required />
+        @if(form.get('titulo')?.hasError('required')) {
+          <mat-error>El campo titulo es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- descripcion Propiedad -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>descripcion Propiedad</mat-label>
+        <input matInput formControlName="descripcion" required />
+        @if(form.get('descripcion')?.hasError('required')) {
+          <mat-error>El campo descripcion es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- DNI Usuario -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>direccion Propiedad</mat-label>
+        <input matInput formControlName="direccion" required />
+        @if(form.get('direccion')?.hasError('required')) {
+          <mat-error>El campo direccion es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- distrito Propiedad -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>distrito Propiedad</mat-label>
+        <input matInput formControlName="distrito" required />
+        @if(form.get('distrito')?.hasError('required')) {
+          <mat-error>El campo distrito es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- precio Propiedad -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Precio</mat-label>
+        <input matInput type="number" formControlName="precio" required />
+        @if(form.get('precio')?.hasError('required')) {
+          <mat-error>El campo Precio es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- habitaciones Propiedad -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>habitaciones</mat-label>
+        <input matInput type="number" formControlName="habitaciones" required />
+        @if(form.get('habitaciones')?.hasError('required')) {
+          <mat-error>El campo habitaciones es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- Fecha Publicacion -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Fecha Publicacion</mat-label>
+        <input matInput [matDatepicker]="pickerInicio" formControlName="fechaPublicacion" required />
+        <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+        <mat-datepicker #pickerInicio></mat-datepicker>
+        @if(form.get('fechaPublicacion')?.hasError('required')) {
+        <mat-error>El campo Fecha Publicaciones obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="fkUsuario">
+          @for (u of listaUsuario; track u) {
+          <mat-option [value]="u.idUsuario">{{ u.username }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('fkUsuario')?.hasError('required')) { Ingrese el usuario! }
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <button mat-button>{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+    </form>
+  </div>
+</div>

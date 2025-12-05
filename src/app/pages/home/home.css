@@ -1,0 +1,516 @@
+/*
+ * 1. Estilos Globales (index.css original)
+ * Aplica a la estructura general, tipografía, botones base, Header y Footer
+ */
+
+/* Tipografía y Reset Básico */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #333;
+  background-color: #f7f7f7;
+}
+
+h1, h2, h3, h4 {
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+/* Contenedor General */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Botones y Enlaces Comunes */
+.btn-primary, .btn-secondary, .btn-outline, .btn-cta {
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #007bff; /* Azul primario */
+  color: white;
+  border: 2px solid #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #007bff; /* Verde para CTA */
+  color: white;
+  border: 2px solid #007bff;
+}
+
+.btn-secondary:hover {
+  background-color: #1e7e34;
+  border-color: #1e7e34;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #007bff;
+  border: 2px solid #007bff;
+}
+
+.btn-outline:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-cta {
+  background-color: #ffc107; /* Amarillo/Naranja de CTA Final */
+  color: #1a1a1a;
+  border: 2px solid #ffc107;
+  font-size: 1.1em;
+  padding: 15px 30px;
+}
+
+.btn-cta:hover {
+  background-color: #e0a800;
+  border-color: #e0a800;
+}
+
+/* Barra de Navegación (Header) */
+.topheader {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+.topheader .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #0056b3;
+}
+
+.logo img {
+  height: 40px;
+  margin-right: 8px;
+}
+
+/* Menú Horizontal */
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.Menu_Horizontal > li {
+  display: inline-block;
+  position: relative;
+}
+
+.Menu_Horizontal > li > a {
+  display: block;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.Menu_Horizontal > li > a:hover {
+  background-color: #f0f0f0;
+  color: #007bff;
+}
+
+/* Menú Vertical (Dropdown) */
+.Menu_Vertical {
+  position: absolute;
+  display: none;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+  z-index: 999;
+}
+
+.Menu_Horizontal li:hover .Menu_Vertical {
+  display: block;
+}
+
+.Menu_Vertical li a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+.Menu_Vertical li a:hover {
+  background-color: #f0f0f0;
+  color: #007bff;
+}
+
+/* Footer */
+.footer {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  padding: 40px 0 20px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #444;
+  padding-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+.footer-column {
+  width: 20%;
+  min-width: 180px;
+  margin-bottom: 20px;
+}
+
+.footer-logo img {
+  height: 40px;
+  margin-right: 8px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.4em;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.footer-column p {
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+.footer-column h4 {
+  color: white;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.1em;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li a {
+  color: #b0b0b0;
+  text-decoration: none;
+  font-size: 0.9em;
+  display: block;
+  padding: 5px 0;
+}
+
+.footer-column ul li a:hover {
+  color: #0056b3;
+}
+
+.social-links a {
+  display: inline-block;
+  color: white;
+  font-size: 1.2em;
+  margin-right: 15px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #007bff;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 0.8em;
+  color: #888;
+}
+
+.footer-bottom a {
+  color: #b0b0b0;
+  text-decoration: none;
+}
+
+/* Responsive del Header/Footer/Global */
+@media (max-width: 1024px) {
+  .Menu_Horizontal {
+    display: none; /* O puedes implementar un menú hamburguesa */
+  }
+  .topheader .container {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+  }
+  .footer-column {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
+
+/*
+ * 2. Estilos del Componente Home (index.css original - secciones específicas)
+ */
+
+/* Sección HERO */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 10%;
+  background-color: #f7fcf9; /* Fondo suave para la sección */
+  gap: 40px;
+}
+
+.hero-text {
+  max-width: 50%;
+}
+
+.hero-text h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.hero-text span {
+  color: #007bff;
+}
+
+.hero-text p {
+  font-size: 1.2em;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.hero-buttons a {
+  margin-right: 15px;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección ESTADÍSTICAS */
+.estadisticas {
+  background-color: white;
+  padding: 40px 0;
+  border-top: 1px solid #eee;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.stat-item h3 {
+  font-size: 2.5em;
+  color: #007bff;
+  margin-bottom: 5px;
+}
+
+.stat-item p {
+  font-weight: 500;
+  color: #555;
+}
+
+/* Secciones HISTORIA, PROPÓSITO, MISIÓN */
+.historia, .proposito, .mision {
+  padding: 60px 10%;
+  text-align: center;
+}
+
+.historia:nth-child(even), .mision:nth-child(even) {
+  background-color: #f7fcf9;
+}
+
+.historia h2, .proposito h2, .mision h2 {
+  font-size: 2.2em;
+  margin-bottom: 40px;
+}
+
+.historia-contenido, .proposito-contenido, .mision-contenido {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  text-align: left;
+}
+
+.historia-imagen, .proposito-imagen, .mision-imagen {
+  flex: 1;
+}
+
+.historia-texto, .proposito-texto, .mision-texto {
+  flex: 1;
+}
+
+.historia-imagen img, .proposito-imagen img, .mision-imagen img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Sección PROCESO (1-2-3-4) */
+.proceso {
+  padding: 60px 10%;
+  text-align: center;
+  background-color: white;
+}
+
+.proceso .subtitle {
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.proceso-steps {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.step {
+  width: 200px;
+  text-align: center;
+}
+
+.step-number {
+  font-size: 2em;
+  font-weight: 700;
+  color: white;
+  background-color: #0084ff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  margin: 0 auto 20px;
+}
+
+.step h3 {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+/* Beneficios */
+.beneficios-title {
+  margin-top: 60px;
+  margin-bottom: 40px;
+  color: #007bff;
+}
+
+.beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.beneficio-item {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f7fcf9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.beneficio-item img {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+.beneficio-item h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 1.2em;
+}
+
+/* Sección CTA Final */
+.cta-final {
+  background: linear-gradient(90deg, #0063cc, #3af1b4); /* Degradado llamativo */
+  padding: 80px 10%;
+  text-align: center;
+  color: white;
+}
+
+.cta-content h2 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.cta-content p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+/* Responsive del Home */
+@media (max-width: 992px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 5%;
+  }
+
+  .hero-text, .hero-image {
+    max-width: 100%;
+  }
+
+  .hero-image {
+    order: -1; /* Mueve la imagen arriba en móviles */
+    margin-bottom: 30px;
+  }
+
+  .historia-contenido, .proposito-contenido, .mision-contenido {
+    flex-direction: column;
+  }
+
+  .historia-imagen, .proposito-imagen, .mision-imagen {
+    order: -1;
+  }
+
+  .stats-container {
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    width: 40%;
+    margin-bottom: 20px;
+  }
+}

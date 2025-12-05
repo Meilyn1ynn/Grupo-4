@@ -1,0 +1,20 @@
+/* Puedes copiar el contenido de resenaslistar.css aquí */
+button[matButton] {
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 4px 12px;
+  color: rgb(238, 244, 241);
+  text-transform: none;
+  transition: all 0.25s ease;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  background-color: rgb(251, 140, 0);
+  margin-right: 8px; /* Separación entre botones */
+}
+
+@media (max-width: 768px) {
+  button[matButton] {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+  }
+}

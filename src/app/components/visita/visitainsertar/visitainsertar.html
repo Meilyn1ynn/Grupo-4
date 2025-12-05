@@ -1,0 +1,79 @@
+<div class="container">
+  <div style="text-align: center; margin: 3%">
+    <h2>{{ edicion ? 'Editar Solicitud de Visita' : 'Solicitar Nueva Visita' }}</h2>
+  </div>
+
+  <div style="text-align: center;">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+      @if(edicion) {
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="idVisita" required /> 
+        @if(form.get('idVisita')?.hasError('required')) {
+        <mat-error>El campo id es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      }
+
+      <br />
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Fecha Solicitada</mat-label>
+        <input matInput [matDatepicker]="pickerInicio" formControlName="fecha" required /> 
+        <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+        <mat-datepicker #pickerInicio></mat-datepicker>
+        @if(form.get('fecha')?.hasError('required')) {
+        <mat-error>La fecha es obligatoria.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+      
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Inquilino/Solicitante</mat-label>
+        <mat-select formControlName="fkUsuario" required>
+          @for (u of listaUsuario; track u.idUsuario) {
+          <mat-option [value]="u.idUsuario">{{ u.username }}</mat-option>
+          }
+        </mat-select>
+        @if(form.get('fkUsuario')?.hasError('required')) { 
+        <mat-error>El Inquilino es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      
+      <br />
+      
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Propiedad a Visitar</mat-label>
+        <mat-select formControlName="fkPropiedad" required>
+          @for (p of listaPropiedad; track p.idPropiedad) {
+          <mat-option [value]="p.idPropiedad">{{ p.titulo }}</mat-option>
+          }
+        </mat-select>
+        @if(form.get('fkPropiedad')?.hasError('required')) {
+        <mat-error>La Propiedad es obligatoria.</mat-error>
+        }
+      </mat-form-field>
+      
+      <br />
+      
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Estado de la Visita</mat-label>
+        <mat-select formControlName="estado" required>
+          <mat-option value="PENDIENTE">PENDIENTE</mat-option>
+          <mat-option value="CONFIRMADA">CONFIRMADA</mat-option>
+          <mat-option value="CANCELADA">CANCELADA</mat-option>
+          <mat-option value="COMPLETADA">COMPLETADA</mat-option>
+        </mat-select>
+        @if(form.get('estado')?.hasError('required')) {
+        <mat-error>El estado es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <button mat-raised-button color="primary">{{ edicion ? 'Actualizar' : 'Solicitar' }}</button>
+    </form>
+  </div>
+</div>

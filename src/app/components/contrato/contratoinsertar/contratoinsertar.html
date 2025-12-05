@@ -1,0 +1,104 @@
+<div class="container">
+  <div style="text-align: center; margin: 3%">
+    <h2>{{ edicion ? 'Editar Contrato' : 'Registrar Contrato' }}</h2>
+  </div>
+
+  <div style="text-align: center;">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+      <!-- ID Contrato solo en edición -->
+      @if(edicion) {
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="idContrato" required />
+        @if(form.get('idContrato')?.hasError('required')) {
+        <mat-error>El campo id es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      }
+
+      <br />
+
+      <!-- Fecha Inicio -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Fecha Inicio</mat-label>
+        <input matInput [matDatepicker]="pickerInicio" formControlName="fechaInicio" required />
+        <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+        <mat-datepicker #pickerInicio></mat-datepicker>
+        @if(form.get('fechaInicio')?.hasError('required')) {
+        <mat-error>El campo Fecha Inicio es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- Fecha Fin -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Fecha Fin</mat-label>
+        <input matInput [matDatepicker]="pickerFin" formControlName="fechaFin" required />
+        <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFin></mat-datepicker>
+        @if(form.get('fechaFin')?.hasError('required')) {
+        <mat-error>El campo Fecha Fin es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+
+      <!-- PDF -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>PDF</mat-label>
+        <input matInput formControlName="pdf" required />
+        @if(form.get('pdf')?.hasError('required')) {
+        <mat-error>El campo PDF es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- Estado -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Estado</mat-label>
+        <input matInput formControlName="estado" required />
+        @if(form.get('estado')?.hasError('required')) {
+        <mat-error>El campo estado es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- Usuario -->
+
+      <mat-form-field appearance="fill" class="full-width"> 
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="fk">
+          @for (u of listaUsuario; track u) {
+          <mat-option [value]="u.idUsuario">{{ u.username }}</mat-option>
+          }
+        </mat-select>
+        @if (form.get('fk')?.hasError('required')) {
+            <mat-error>Ingrese el usuario!</mat-error>
+        }
+      </mat-form-field>
+      <br />
+
+      <!-- Propiedad -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Propiedad</mat-label>
+        <mat-select formControlName="fk2" required>
+          @for(p of listaPropiedad; track p) {
+          <mat-option [value]="p.idPropiedad">{{ p.titulo }}</mat-option>
+          }
+        </mat-select>
+        @if(form.get('fk2')?.hasError('required')) {
+        <mat-error>Debe seleccionar una propiedad.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <button mat-button>{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+    </form>
+  </div>
+</div>

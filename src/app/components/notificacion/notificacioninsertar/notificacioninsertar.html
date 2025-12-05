@@ -1,0 +1,87 @@
+<div class="container">
+  <div style="text-align: center; margin: 3%">
+    <h2>{{ edicion ? 'Editar Notificaciones' : 'Registrar Notificaciones' }}</h2>
+  </div>
+
+  <div style="text-align: center;">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+      <!-- ID Propiedad solo en edición -->
+      @if(edicion) {
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>ID Notificacion</mat-label>
+        <input matInput formControlName="id" required />
+        @if(form.get('id')?.hasError('required')) {
+          <mat-error>El campo id es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      }
+
+      <br />
+
+      <!-- Nombre Usuario -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Titulo Notificacion</mat-label>
+        <input matInput formControlName="titulo" required />
+        @if(form.get('titulo')?.hasError('required')) {
+          <mat-error>El campo titulo es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- mensaje Notificacion -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>mensaje Notificacion</mat-label>
+        <input matInput formControlName="mensaje" required />
+        @if(form.get('mensaje')?.hasError('required')) {
+          <mat-error>El campo descripcion es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+
+      <br />
+
+      <!-- leida Notififacion -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>leida Notificacion</mat-label>
+        <input matInput formControlName="leida" required />
+        @if(form.get('leida')?.hasError('required')) {
+          <mat-error>El campo leida es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+
+      <!-- Fecha Publicacion -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Fecha Notificacion</mat-label>
+        <input matInput [matDatepicker]="pickerInicio" formControlName="fecha" required />
+        <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+        <mat-datepicker #pickerInicio></mat-datepicker>
+        @if(form.get('fecha')?.hasError('required')) {
+        <mat-error>El campo Fecha Notificacion obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="fkUsuario">
+          @for (u of listaUsuario; track u) {
+          <mat-option [value]="u.idUsuario">{{ u.username }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('fkUsuario')?.hasError('required')) { Ingrese el usuario! }
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <button mat-button>{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+    </form>
+  </div>
+</div>
